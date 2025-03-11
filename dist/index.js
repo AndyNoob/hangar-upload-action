@@ -67,8 +67,10 @@ async function main() {
       core.setFailed(`Failed to upload: ${res.statusText} ${await res.text()}`);
       process.exit(1);
     }
+    core.info("Response: " + res.status);
     return await res.json();
   });
   core.setOutput("url", resp.url);
-  core.info(JSON.stringify(resp));
+  core.info("Response body: " + JSON.stringify(resp));
+  core.info("Success!");
 }
