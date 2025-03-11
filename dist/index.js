@@ -69,5 +69,6 @@ async function main() {
     }
     return await res.json();
   });
+  core.setOutput("url", resp.url);
   core.info(JSON.stringify(resp));
 }
