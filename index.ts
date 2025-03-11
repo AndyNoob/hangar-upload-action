@@ -18,6 +18,10 @@ main().catch(err => {
   core.setFailed(err.message)
 })
 
+interface UploadResult {
+  url: string;
+}
+
 async function main() {
   const form = new FormData()
 
@@ -63,7 +67,7 @@ async function main() {
 
   core.info('Successfully authenticated!')
 
-  const resp = await fetch(`https://hangar.papermc.io/api/v1/projects/${slug}/upload`, {
+  const resp: UploadResult = await fetch(`https://hangar.papermc.io/api/v1/projects/${slug}/upload`, {
     method: 'POST',
     headers: {
       'User-Agent': `hangar-upload-action; ${slug};`,
@@ -76,8 +80,9 @@ async function main() {
       core.setFailed(`Failed to upload: ${res.statusText} ${await res.text()}`)
       process.exit(1)
     }
-    return await res.json()
+    return await res.json() as UploadResult
   })
 
+  core.setOutput("url", resp.url);
   core.info(JSON.stringify(resp))
 }

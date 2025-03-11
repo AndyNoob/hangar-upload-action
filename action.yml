@@ -33,6 +33,10 @@ inputs:
     required: false
     default: '{}'
 
+outputs:
+  url:
+    description: 'Url of new version'
+
 runs:
   using: 'node16'
   main: 'dist/index.js'
