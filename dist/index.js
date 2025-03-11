@@ -73,4 +73,5 @@ async function main() {
   core.setOutput("url", resp.url);
   core.info("Response body: " + JSON.stringify(resp));
   core.info("Success!");
+  process.exit(0);
 }
