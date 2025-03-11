@@ -67,7 +67,7 @@ async function main() {
 
   core.info('Successfully authenticated!')
 
-  const resp: UploadResult = await fetch(`https://hangar.papermc.io/api/v1/projects/${slug}/upload`, {
+  const resp = await fetch(`https://hangar.papermc.io/api/v1/projects/${slug}/upload`, {
     method: 'POST',
     headers: {
       'User-Agent': `hangar-upload-action; ${slug};`,
@@ -80,7 +80,8 @@ async function main() {
       core.setFailed(`Failed to upload: ${res.statusText} ${await res.text()}`)
       process.exit(1)
     }
-    return await res.json() as UploadResult
+    core.info('Response: ' + res.status)
+    return await res.json()
   })
 
   core.setOutput("url", resp.url);
