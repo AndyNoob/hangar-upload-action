@@ -84,5 +84,6 @@ async function main() {
   })
 
   core.setOutput("url", resp.url);
-  core.info(JSON.stringify(resp))
+  core.info(JSON.stringify(resp));
+  core.info('Success!');
 }
